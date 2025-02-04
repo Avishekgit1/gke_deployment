@@ -36,8 +36,10 @@ jobs:
         # Ensure the GOOGLE_PROJECT variable is set correctly (print it to debug)
         echo "Google Project: $GOOGLE_PROJECT"
         
-        # Build and push the Docker image with the correct project ID
-        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest .
+        # Build Docker image using the correct context (project-root folder) and Dockerfile location
+        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest -f project-root/Dockerfile .
+
+        # Push Docker image to the registry
         docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest
 
     - name: Deploy to GKE
