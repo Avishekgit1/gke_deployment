@@ -13,7 +13,7 @@ jobs:
     - name: Code checkout
       uses: actions/checkout@v2
 
-    # Authenticate with Google Cloud before using the gcloud CLI
+    # Authenticate with Google Cloud using credentials_json (service account key)
     - name: Google Cloud Authentication
       uses: google-github-actions/auth@v2
       with:
