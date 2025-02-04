@@ -7,5 +7,5 @@ RUN rm /usr/share/nginx/html/index.html
 COPY app/index.html /usr/share/nginx/html/index.html
 COPY app/app.js /usr/share/nginx/html/app.js
 
-# Expose port 80 for the web server
+# Expose port 80 
 EXPOSE 80
