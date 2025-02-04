@@ -18,7 +18,7 @@ function getLocation() {
     }
 }
 
-// Set the dynamic content when the page loads
+// Set the dynamic content when the page load
 window.onload = function() {
     document.getElementById("greeting").innerText = getGreeting();
     getLocation();

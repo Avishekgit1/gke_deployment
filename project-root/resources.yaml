@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webdynamic
+  name: webdynamics
   replicas: 1
   selector:
     matchLabels:
