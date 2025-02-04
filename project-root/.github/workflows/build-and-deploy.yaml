@@ -9,7 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-
     - name: Code checkout
       uses: actions/checkout@v2
 
@@ -35,11 +34,11 @@ jobs:
 
         # Ensure the GOOGLE_PROJECT variable is set correctly (print it to debug)
         echo "Google Project: $GOOGLE_PROJECT"
-        
-        # Build Docker image using the correct context (project-root folder) and Dockerfile location
-        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest -f project-root/Dockerfile .
 
-        # Push Docker image to the registry
+        # Build and push the Docker image with the correct project ID
+        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest .
+
+        # Push the image to the Google Container Registry
         docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest
 
     - name: Deploy to GKE
@@ -51,6 +50,6 @@ jobs:
 
         # Replace project ID in the resources.yaml (if necessary)
         sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
-        
+
         # Apply the deployment configuration
         kubectl apply -f resources.yaml
